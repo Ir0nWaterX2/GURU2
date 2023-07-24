@@ -5,16 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFDF6">
 
     <TextView
         android:id="@+id/tvListTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="53dp"
         android:layout_marginStart="177dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="177dp"
         android:text="List"
+        android:textColor="#3F3F48"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
