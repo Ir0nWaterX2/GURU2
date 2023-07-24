@@ -8,6 +8,8 @@
     android:layout_height="match_parent"
     android:background="#FFFDF6">
 
+    <!-- List Title -->
+
     <TextView
         android:id="@+id/tvListTitle"
         android:layout_width="match_parent"
@@ -21,6 +23,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 질문 리스트가 들어갈 프레임 -->
 
     <FrameLayout
         android:id="@+id/Container"

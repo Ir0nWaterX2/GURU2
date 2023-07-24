@@ -6,6 +6,8 @@
     android:orientation="vertical"
     android:layout_marginTop="20dp">
 
+    <!-- 새로운 질문이 들어갈  텍스트 뷰 -->
+
     <EditText
         android:id="@+id/EdtTitle"
         android:textColor="#3F3F48"
