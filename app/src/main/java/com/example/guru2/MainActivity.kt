@@ -9,7 +9,7 @@ class MainActivity : AppCompatActivity() {
 
     //InputActivity 이동 버튼
     lateinit var btnToInputActivity : Button
-    //InputActivity 이동 버튼
+    //ListActivity 이동 버튼
     lateinit var  btnToListActivity : Button
 
 
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         btnToInputActivity = findViewById<Button>(R.id.btnToInputActivity)
         btnToListActivity = findViewById<Button>(R.id.btnToListActivity)
 
-        //MainActivity에서 InputActivity로 이동
+        //MainActivity에서 InputActivity로 이동 (새로 입력)
         btnToInputActivity.setOnClickListener {
             var intent = Intent(this, InputActivity::class.java)
             startActivity(intent) }
