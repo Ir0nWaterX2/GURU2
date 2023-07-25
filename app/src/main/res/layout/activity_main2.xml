@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFDF6"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity2">
 
     <TextView
         android:id="@+id/tvtTitle"
@@ -74,7 +74,7 @@
         android:layout_marginTop="350dp"
         android:layout_marginEnd="10dp"
         android:backgroundTint="#DDE0CF"
-        android:text="답변하러 가기"
+        android:text="답변 수정하러 가기"
         android:textAllCaps="false"
         android:textColor="#3F3F48"
         android:textSize="18sp"
@@ -89,7 +89,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="200dp"
         android:layout_marginEnd="10dp"
-        android:text="오늘의 질문이 도착했습니다."
+        android:text="오늘의 질문에 이미 답했습니다."
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#3F3F48"
         app:layout_constraintEnd_toEndOf="parent"
