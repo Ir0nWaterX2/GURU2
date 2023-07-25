@@ -99,16 +99,16 @@
             app:layout_constraintTop_toBottomOf="@+id/etInput" />
 
         <!-- 다이어리 작성 후 입력 버튼 -->
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/btnInput"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginStart="100dp"
             android:layout_marginEnd="100dp"
             android:text="입력"
-            android:background="@color/button"
+            android:backgroundTint="@color/button"
+            android:textColor="@color/text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constrantEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/line2"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
