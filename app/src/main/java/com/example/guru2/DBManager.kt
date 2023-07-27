@@ -12,10 +12,6 @@ class DBManager(
         version: Int
 ) : SQLiteOpenHelper(context, name, factory, version) {
 
-    init {
-        onCreate(writableDatabase)
-    }
-
     override fun onCreate(db: SQLiteDatabase?) {
 
     }
@@ -61,10 +57,6 @@ class DBManager(
 
     // 데이터 존재 여부 확인 함수
     fun isDataExist(year: Int, month: Int, day: Int): Boolean {
-        if (year <= 0 || month <= 0 || day <= 0) {
-            return false
-        }
-
         val db = readableDatabase
         val query = "SELECT * FROM userDB_$year WHERE month = $month AND day = $day"
         val cursor = db.rawQuery(query, null)
