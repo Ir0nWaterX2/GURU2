@@ -55,19 +55,40 @@ class DBManager(
         return tableExists
     }
 
+    // 데이터 존재 여부 확인 함수
+    fun isDataExist(year: Int, month: Int, day: Int): Boolean {
+        val db = readableDatabase
+        val query = "SELECT * FROM userDB_$year WHERE month = $month AND day = $day"
+        val cursor = db.rawQuery(query, null)
+        val count = cursor.count
+        cursor.close()
+        return count > 0
+    }
+
     // 데이터 추가 함수
     fun addData(answer: String) {
         val currentYear = getCurrentYear()
+        val currentMonth = getCurrentMonth()
+        val currentDay = getCurrentDay()
+
         if (isTableExist(currentYear)) {
-            val currentMonth = getCurrentMonth()
-            val currentDay = getCurrentDay()
-            insertData(currentYear, currentMonth, currentDay, answer)
+            val isDataExist = isDataExist(currentYear, currentMonth, currentDay)
+            if (isDataExist) {
+                updateData(currentYear, currentMonth, currentDay, answer)
+            } else {
+                insertData(currentYear, currentMonth, currentDay, answer)
+            }
         } else {
             createYearlyTable(currentYear)
-            val currentMonth = getCurrentMonth()
-            val currentDay = getCurrentDay()
             insertData(currentYear, currentMonth, currentDay, answer)
         }
+    }
+
+    // 기존 데이터를 수정하는 함수
+    fun updateData(year: Int, month: Int, day: Int, answer: String) {
+        val db = writableDatabase
+        db.execSQL("UPDATE userDB_$year SET answer = '$answer' WHERE month = $month AND day = $day")
+        db.close()
     }
 
     // 연도별 테이블 생성 함수

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.util.Log
 
 class InputActivity : AppCompatActivity() {
 
@@ -31,6 +32,7 @@ class InputActivity : AppCompatActivity() {
             // 데이터 추가 후 EditText 비움
             etInput.text.clear()
 
+            // MainActivity2로 이동
             val intent = Intent(this, MainActivity2::class.java)
             startActivity(intent)
         }
@@ -59,4 +61,5 @@ class InputActivity : AppCompatActivity() {
         // 가져온 데이터를 etInput에 설정
         etInput.setText(data)
     }
+
 }
