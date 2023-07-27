@@ -15,7 +15,7 @@ class BoardAdapter(val itemList: ArrayList<Q_item>) :
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.rv_list_item, parent, false)
         return BoardViewHolder(view)
     }
 
@@ -38,13 +38,13 @@ class BoardAdapter(val itemList: ArrayList<Q_item>) :
 
         init{
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, TestActivity ::class.java) //TestActivity->PreviousQuestionsActivity로 변경 예정
+                val intent = Intent(itemView.context, AnswerActivity ::class.java) //TestActivity->AnswerActivity로 변경 예정
 
                 //이동할 Activity에 아이템 정보 전달
                 val index = adapterPosition // 몇번째 질문인지에 대한 정보 전달 (범위: 0~30)
                 intent.putExtra("day","${index+1}번째입니다. ")
 
-                //아이템(질문 클릭 시 PreviousQuestionsActivity로 이동)
+                //아이템(질문 클릭 시 AnswerActivity로 이동)
                 itemView.context.startActivity(intent)
             }
         }
