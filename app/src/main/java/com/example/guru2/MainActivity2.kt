@@ -49,16 +49,21 @@ class MainActivity2 : AppCompatActivity() {
 
             if (isComingBackFromMainActivity2 == true) {
                 // 이전 데이터를 InputActivity에 표시하기 위해 displayPreviousData() 호출
-                val year = data.getIntExtra("YEAR", -1)
-                val month = data.getIntExtra("MONTH", -1)
-                val day = data.getIntExtra("DAY", -1)
-                val inputActivityIntent = Intent(this, InputActivity::class.java)
-                inputActivityIntent.putExtra("FROM_MAIN_ACTIVITY_2", true)
-                inputActivityIntent.putExtra("YEAR", year)
-                inputActivityIntent.putExtra("MONTH", month)
-                inputActivityIntent.putExtra("DAY", day)
-                startActivity(inputActivityIntent)
+                val year = data?.getIntExtra("YEAR", -1)
+                val month = data?.getIntExtra("MONTH", -1)
+                val day = data?.getIntExtra("DAY", -1)
+
+                // 입력값이 있는 경우에만 InputActivity를 실행하도록 수정
+                if (year != -1 && month != -1 && day != -1) {
+                    val inputActivityIntent = Intent(this, InputActivity::class.java)
+                    inputActivityIntent.putExtra("FROM_MAIN_ACTIVITY_2", true)
+                    inputActivityIntent.putExtra("YEAR", year)
+                    inputActivityIntent.putExtra("MONTH", month)
+                    inputActivityIntent.putExtra("DAY", day)
+                    startActivity(inputActivityIntent)
+                }
             }
         }
     }
+
 }
