@@ -12,6 +12,10 @@ class DBManager(
         version: Int
 ) : SQLiteOpenHelper(context, name, factory, version) {
 
+    init {
+        onCreate(writableDatabase)
+    }
+
     override fun onCreate(db: SQLiteDatabase?) {
 
     }
@@ -39,14 +43,14 @@ class DBManager(
     }
 
     // 특정 연도의 테이블에 데이터를 삽입하는 함수
-    fun insertData(year: Int, month: Int, day: Int, answer: String) {
+    private fun insertData(year: Int, month: Int, day: Int, answer: String) {
         val db = writableDatabase
         db.execSQL("INSERT INTO userDB_$year (month, day, answer) VALUES ($month, $day, '$answer')")
         db.close()
     }
 
     // 특정 연도의 테이블이 존재하는지 확인하는 함수
-    fun isTableExist(year: Int): Boolean {
+    private fun isTableExist(year: Int): Boolean {
         val db = readableDatabase
         val cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='userDB_$year'", null)
         val tableExists = cursor.count > 0
@@ -57,6 +61,10 @@ class DBManager(
 
     // 데이터 존재 여부 확인 함수
     fun isDataExist(year: Int, month: Int, day: Int): Boolean {
+        if (year <= 0 || month <= 0 || day <= 0) {
+            return false
+        }
+
         val db = readableDatabase
         val query = "SELECT * FROM userDB_$year WHERE month = $month AND day = $day"
         val cursor = db.rawQuery(query, null)
@@ -85,14 +93,14 @@ class DBManager(
     }
 
     // 기존 데이터를 수정하는 함수
-    fun updateData(year: Int, month: Int, day: Int, answer: String) {
+    private fun updateData(year: Int, month: Int, day: Int, answer: String) {
         val db = writableDatabase
         db.execSQL("UPDATE userDB_$year SET answer = '$answer' WHERE month = $month AND day = $day")
         db.close()
     }
 
     // 연도별 테이블 생성 함수
-    fun createYearlyTable(year: Int) {
+    private fun createYearlyTable(year: Int) {
         val db = writableDatabase
         db.execSQL("CREATE TABLE IF NOT EXISTS userDB_$year (month INTEGER, day INTEGER, answer TEXT)")
         db.close()

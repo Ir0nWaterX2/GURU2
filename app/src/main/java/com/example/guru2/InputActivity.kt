@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.util.Log
 
 class InputActivity : AppCompatActivity() {
 
@@ -26,15 +25,18 @@ class InputActivity : AppCompatActivity() {
         btnInput.setOnClickListener{
             val userAnswer = etInput.text.toString()
 
-            // 사용자가 입력한 데이터를 DB에 추가
+            // 사용자가 입력한 데이터를 DB에 추가 또는 수정
             dbManager.addData(userAnswer)
 
             // 데이터 추가 후 EditText 비움
             etInput.text.clear()
 
-            // MainActivity2로 이동
-            val intent = Intent(this, MainActivity2::class.java)
-            startActivity(intent)
+            // 무조건 Flag를 MainActivity2로 전달
+            val intent = Intent()
+            intent.putExtra("FROM_MAIN_ACTIVITY_2", true)
+            setResult(RESULT_OK, intent)
+
+            finish()
         }
 
         // MainActivity2로부터 전달받은 Intent 가져오기
@@ -45,21 +47,31 @@ class InputActivity : AppCompatActivity() {
 
         // isComingBackFromMainActivity2가 true인 경우에만 이전에 입력한 데이터를 가져와서 설정
         if (isComingBackFromMainActivity2) {
-            displayPreviousData()
+            val year = intentFromMainActivity2.getIntExtra("YEAR", -1)
+            val month = intentFromMainActivity2.getIntExtra("MONTH", -1)
+            val day = intentFromMainActivity2.getIntExtra("DAY", -1)
+            displayPreviousData(year, month, day)
         }
     }
 
-    private fun displayPreviousData() {
+    private fun displayPreviousData(year: Int, month: Int, day: Int) {
+        // DB에 오늘 입력한 데이터가 있는지 확인
+        val isDataExist = dbManager.isDataExist(year, month, day)
 
-        val currentYear = dbManager.getCurrentYear()
-        val currentMonth = dbManager.getCurrentMonth()
-        val currentDay = dbManager.getCurrentDay()
-
-        // DB에서 해당 날짜의 데이터를 가져오기
-        val data = dbManager.getData(currentYear, currentMonth, currentDay)
-
-        // 가져온 데이터를 etInput에 설정
-        etInput.setText(data)
+        if (isDataExist) {
+            // 지정 날짜에 데이터가 있는 경우, 이 데이터를 가져와 etInput에 표시
+            val data = dbManager.getData(year, month, day)
+            etInput.setText(data)
+        } else {
+            // 없는 경우, etInput clear
+            etInput.text.clear()
+        }
     }
-
 }
+
+
+
+
+
+
+
