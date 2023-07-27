@@ -1,27 +1,32 @@
 package com.example.guru2
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class ListActivity : AppCompatActivity() {
-
-    //MainActivity 이동 버튼
-    lateinit var  btnBack : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
-        btnBack = findViewById<Button>(R.id.btnBack)
+        val rv_board = findViewById<RecyclerView>(R.id.rv_board)
 
-        //listActivity에서 MainActivity로 이동
-        btnBack.setOnClickListener {
-            var intent = Intent(this, MainActivity ::class.java)
-            startActivity(intent)
+        //출력될 아이템(질문을 저장할 배열)
+        val itemList = ArrayList<Q_item>()
+
+        //31개 질문 출력. 추후 서로 다른 질문 31개로 수정 예정
+        for(n in 1..31){
+            itemList.add(Q_item("$n 일","$n 번째 질문"))
         }
 
+        val boardAdapter = BoardAdapter(itemList)
+        boardAdapter.notifyDataSetChanged()
+
+        rv_board.adapter = boardAdapter
+        rv_board.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
     }
+
 }
