@@ -15,23 +15,35 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        btnToInputActivity = findViewById<Button>(R.id.btnToInputActivity)
-        btnToListActivity = findViewById<Button>(R.id.btnToListActivity)
+        // DB에 오늘 입력한 데이터가 있는지 확인
+        val dbManager = DBManager(this, "DB", null, 1)
+        val currentYear = dbManager.getCurrentYear()
+        val currentMonth = dbManager.getCurrentMonth()
+        val currentDay = dbManager.getCurrentDay()
+        val isDataExist = dbManager.isDataExist(currentYear, currentMonth, currentDay)
 
-        //MainActivity에서 InputActivity로 이동( 새로 입력)
-        btnToInputActivity.setOnClickListener {
-            var intent = Intent(this, InputActivity::class.java)
-            startActivity(intent) }
-
-        //MainActivity에서 ListActivity로 이동
-        btnToListActivity.setOnClickListener {
-            var intent = Intent(this,ListActivity ::class.java)
+        if (isDataExist) {
+            // 오늘 입력한 데이터가 있는 경우 MainActivity2 표시
+            val intent = Intent(this, MainActivity2::class.java)
             startActivity(intent)
+            finish()
+        } else{
+            setContentView(R.layout.activity_main)
+
+            btnToInputActivity = findViewById<Button>(R.id.btnToInputActivity)
+            btnToListActivity = findViewById<Button>(R.id.btnToListActivity)
+
+            //MainActivity에서 InputActivity로 이동( 새로 입력)
+            btnToInputActivity.setOnClickListener {
+                var intent = Intent(this, InputActivity::class.java)
+                startActivity(intent) }
+
+            //MainActivity에서 ListActivity로 이동
+            btnToListActivity.setOnClickListener {
+                var intent = Intent(this,ListActivity ::class.java)
+                startActivity(intent)
+            }
         }
-
     }
-
-
 }
