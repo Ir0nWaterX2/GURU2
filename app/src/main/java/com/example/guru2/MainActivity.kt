@@ -7,6 +7,8 @@ import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var dbManager : DBManager
+
     //InputActivity 이동 버튼
     lateinit var btnToInputActivity : Button
     //ListActivity 이동 버튼
@@ -17,10 +19,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // DB에 오늘 입력한 데이터가 있는지 확인
-        val dbManager = DBManager(this, "DB", null, 1)
+        dbManager = DBManager(this, "DB", null, 1)
         val currentYear = dbManager.getCurrentYear()
         val currentMonth = dbManager.getCurrentMonth()
         val currentDay = dbManager.getCurrentDay()
+
+        // 해당 연도의 테이블이 있는지 확인
+        if (!dbManager.isTableExist(currentYear)) {
+            dbManager.createYearlyTable(currentYear)
+        }
+
         val isDataExist = dbManager.isDataExist(currentYear, currentMonth, currentDay)
 
         if (isDataExist) {
@@ -47,3 +55,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+

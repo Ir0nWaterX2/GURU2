@@ -46,7 +46,7 @@ class DBManager(
     }
 
     // 특정 연도의 테이블이 존재하는지 확인하는 함수
-    private fun isTableExist(year: Int): Boolean {
+    fun isTableExist(year: Int): Boolean {
         val db = readableDatabase
         val cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='userDB_$year'", null)
         val tableExists = cursor.count > 0
@@ -94,7 +94,7 @@ class DBManager(
     }
 
     // 연도별 테이블 생성 함수
-    private fun createYearlyTable(year: Int) {
+    fun createYearlyTable(year: Int) {
         val db = writableDatabase
         db.execSQL("CREATE TABLE IF NOT EXISTS userDB_$year (month INTEGER, day INTEGER, answer TEXT)")
         db.close()
