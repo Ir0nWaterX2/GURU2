@@ -51,7 +51,7 @@ class InputActivity : AppCompatActivity() {
     }
 
     private fun displayPreviousData(year: Int, month: Int, day: Int) {
-        // DB에 오늘 입력한 데이터가 있는지 확인
+        // DB에 오늘 입력한 데이터 있는지 확인
         val isDataExist = dbManager.isDataExist(year, month, day)
 
         if (isDataExist) {
