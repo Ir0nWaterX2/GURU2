@@ -54,7 +54,7 @@ class ListActivity : AppCompatActivity() {
         //31개 질문 출력. 추후 서로 다른 질문 31개로 수정 예정
         for(n in 0..30){
             val arr = arrQuestion[n]
-            itemList.add(Q_item(0+n,"$arr"))
+            itemList.add(Q_item(1+n,"$arr"))
         }
         val boardAdapter = BoardAdapter(itemList)
         boardAdapter.notifyDataSetChanged()

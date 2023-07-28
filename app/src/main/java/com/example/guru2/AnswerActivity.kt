@@ -50,7 +50,7 @@ class AnswerActivity : AppCompatActivity() {
         )
         //몇번째 질문(몇 일)인지에 대한 값 받기
         val day = intent.getIntExtra("day",0)
-        tvQuestion.text = arrQuestion[day]
+        tvQuestion.text = "-${day+1}일의 질문- \n"+arrQuestion[day]
 
 
         //출력될 아이템(월을 저장할 배열)
