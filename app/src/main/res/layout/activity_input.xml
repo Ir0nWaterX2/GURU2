@@ -78,11 +78,8 @@
             android:textSize="15dp"
             android:hint="오늘의 기록이 없습니다 \n내용을 작성해보세요"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <!-- 구분선 -->
         <View

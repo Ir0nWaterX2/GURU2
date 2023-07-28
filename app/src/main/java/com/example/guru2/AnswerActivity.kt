@@ -1,14 +1,18 @@
 package com.example.guru2
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
-import android.widget.TextView
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.collections.ArrayList
 
-class AnswerActivity : AppCompatActivity() {
+
+class AnswerActivity : AppCompatActivity(), YearPickerDialog.OnYearSelectedListener {
+    private lateinit var btnDatePicker: Button
+
 
     lateinit var btnBack : ImageButton
 
@@ -16,15 +20,30 @@ class AnswerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_answer)
 
+        var btnBack: ImageButton = findViewById(R.id.btnBack)
+        btnDatePicker = findViewById(R.id.btnDatePicker)
         val rvAnswer = findViewById<RecyclerView>(R.id.rvAnswer)
         val tvQuestion = findViewById<TextView>(R.id.tvQuestion)
         btnBack = findViewById<ImageButton>(R.id.btnBack)
 
 
 
+        // 뒤로가기 버튼
+        btnBack.setOnClickListener {
+            val intent = Intent(this, ListActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        // 연도 선택 버튼
+        btnDatePicker.setOnClickListener {
+            val yearPickerDialog = YearPickerDialog()
+            yearPickerDialog.show(supportFragmentManager, "yearPicker")
+        }
+
         //각 날짜에 해당하는 질문(총31개)가 들어있는 배열
         val arrQuestion = arrayOf(
-                "당신은  어떤 사람인가요?",
+                "당신은 어떤 사람인가요?",
                 "오늘 처음으로 먹은 것은 무엇인가요?",
                 "최근 들었던 노래 중 좋다고 생각한 노래가 있나요?",
                 "한달 안에 했던 가장 착한 일은 무엇인가요?",
@@ -56,10 +75,10 @@ class AnswerActivity : AppCompatActivity() {
                 "최근 가장 충격적이었던 일은 무엇인가요?",
                 "미래에 있는 나에게 하고 싶은 말이 있나요?"
         )
+
         //몇번째 질문(몇 일)인지에 대한 값 받기
         val day = intent.getIntExtra("day",0)
         tvQuestion.text = "-${day+1}일의 질문- \n"+arrQuestion[day]
-
 
         //출력될 아이템(월을 저장할 배열)
         val itemList = ArrayList<A_item>()
@@ -70,18 +89,15 @@ class AnswerActivity : AppCompatActivity() {
         }
 
 
-        //MainActivity2에서 ListActivity로 이동
-        btnBack.setOnClickListener {
-            var intentM = Intent(this,ListActivity ::class.java)
-            startActivity(intentM)
-        }
-
-
         val AnswerAdapter = AnswerAdapter(itemList)
         AnswerAdapter.notifyDataSetChanged()
 
         rvAnswer.adapter = AnswerAdapter
         rvAnswer.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+    }
+
+    override fun onYearSelected(year: Int) {
+        btnDatePicker.text = year.toString() // btnDatePicker 버튼의 텍스트 변경
     }
 
 }
