@@ -48,17 +48,22 @@ class MainActivity2 : AppCompatActivity() {
             val isComingBackFromMainActivity2 = data?.getBooleanExtra("FROM_MAIN_ACTIVITY_2", false)
 
             if (isComingBackFromMainActivity2 == true) {
-                // 이전 데이터를 InputActivity에 표시하기 위해 displayPreviousData() 호출
+                // 이전 데이터를 InputActivity에 표시하기 위해 displayPreviousData 호출
                 val year = data.getIntExtra("YEAR", -1)
                 val month = data.getIntExtra("MONTH", -1)
                 val day = data.getIntExtra("DAY", -1)
+
+                // InputActivity로 결과를 돌려주기 위해 Intent 생성
                 val inputActivityIntent = Intent(this, InputActivity::class.java)
                 inputActivityIntent.putExtra("FROM_MAIN_ACTIVITY_2", true)
                 inputActivityIntent.putExtra("YEAR", year)
                 inputActivityIntent.putExtra("MONTH", month)
                 inputActivityIntent.putExtra("DAY", day)
-                startActivity(inputActivityIntent)
+
+                // 결과를 돌려주기 위해 startActivityForResult 사용
+                startActivityForResult(inputActivityIntent, 2)
             }
         }
     }
+
 }
