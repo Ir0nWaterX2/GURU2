@@ -60,7 +60,7 @@ class MainActivity2 : AppCompatActivity() {
                 inputActivityIntent.putExtra("MONTH", month)
                 inputActivityIntent.putExtra("DAY", day)
 
-                // 결과를 돌려주기 위해 startActivityForResult() 사용
+                // 결과를 돌려주기 위해 startActivityForResult 사용
                 startActivityForResult(inputActivityIntent, 2)
             }
         }

@@ -59,7 +59,7 @@ class InputActivity : AppCompatActivity() {
             val data = dbManager.getData(year, month, day)
             etInput.setText(data)
         } else {
-            // 없는 경우, etInput clear
+            // 없는 경우 etInput clear
             etInput.text.clear()
         }
     }
