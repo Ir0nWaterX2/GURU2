@@ -32,6 +32,7 @@ class AnswerActivity : AppCompatActivity() {
         val btnDatePicker = findViewById<Button>(R.id.btnDatePicker)
         val builder = AlertDialog.Builder(this)
         val currentYear = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR)
+        var selectedYear = currentYear // 팝업에 띄울 초깃값은 현재 연도로
 
         // 연도 선택 버튼 클릭시
         btnDatePicker.setOnClickListener {
@@ -40,15 +41,16 @@ class AnswerActivity : AppCompatActivity() {
             val popupView = inflater.inflate(R.layout.dialog_datepicker, null)
             builder.setCustomTitle(popupView)
 
-            // View 객체에서 NumberPicker를 찾아서 최소/최댓값 설정
+            // View 객체에서 NumberPicker를 찾아서 선택할 수 있는 연도의 최소/최댓값 설정
             val YearPicker = popupView.findViewById<NumberPicker>(R.id.YearPicker)
             YearPicker.minValue = 1950
             YearPicker.maxValue = currentYear
 
+            // 선택 범위가 돌지 않도록 설정
             YearPicker.wrapSelectorWheel = false
 
-            // 초기 선택 값을 최댓값으로 설정
-            YearPicker.value = currentYear
+            // 이전에 선택했던 연도가 선택된 채 뜨도록 설정
+            YearPicker.value = selectedYear
 
             val btnSelect = popupView.findViewById<Button>(R.id.btnSelect)
             val btnCancle = popupView.findViewById<Button>(R.id.btnCancle)
@@ -58,8 +60,10 @@ class AnswerActivity : AppCompatActivity() {
 
             // 확인 버튼 클릭시
             btnSelect.setOnClickListener {
-                // 선택한 연도 값을 가져와서 btnDatePicker의 텍스트로 설정
-                val selectedYear = YearPicker.value
+
+                // 선택한 연도 값을 가져와서 selectedYear에 저장
+                selectedYear = YearPicker.value
+                // btnDatePicker의 텍스트를 선택한 연도 값으로 설정
                 btnDatePicker.text = selectedYear.toString()
 
                 alertDialog.dismiss() // 팝업 닫기
@@ -67,8 +71,8 @@ class AnswerActivity : AppCompatActivity() {
 
             // 취소 버튼 클릭시
             btnCancle.setOnClickListener {
-                // Negative 버튼 클릭 시 동작할 내용
-                // 여기에 원하는 동작을 추가하세요.
+                // 취소 버튼 클릭 시 동작할 내용?.. 뭐가있지..
+
                 alertDialog.dismiss() // 팝업 닫기
             }
 
