@@ -1,16 +1,24 @@
 package com.example.guru2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class ListActivity : AppCompatActivity() {
 
+    lateinit var btnBack : ImageButton
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
+        btnBack = findViewById<ImageButton>(R.id.btnBack)
         val rv_board = findViewById<RecyclerView>(R.id.rv_board)
 
         //출력될 아이템(질문을 저장할 배열)
@@ -56,6 +64,15 @@ class ListActivity : AppCompatActivity() {
             val arr = arrQuestion[n]
             itemList.add(Q_item(1+n,"$arr"))
         }
+
+
+        //이전 버튼 클릭 시 MainActivity로 이동
+        btnBack.setOnClickListener {
+            val intentM = Intent(this, MainActivity::class.java)
+            startActivityForResult(intentM, 1)
+        }
+
+
         val boardAdapter = BoardAdapter(itemList)
         boardAdapter.notifyDataSetChanged()
 
