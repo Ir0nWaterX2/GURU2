@@ -22,23 +22,6 @@ class InputActivity : AppCompatActivity() {
 
         dbManager = DBManager(this, "DB", null, 1)
 
-        btnInput.setOnClickListener{
-            val userAnswer = etInput.text.toString()
-
-            // 사용자가 입력한 데이터를 DB에 추가 또는 수정
-            dbManager.addData(userAnswer)
-
-            // 데이터 추가 후 EditText 비움
-            etInput.text.clear()
-
-            // 무조건 Flag를 MainActivity2로 전달
-            val intent = Intent()
-            intent.putExtra("FROM_MAIN_ACTIVITY_2", true)
-            setResult(RESULT_OK, intent)
-
-            finish()
-        }
-
         // MainActivity2로부터 전달받은 Intent 가져오기
         val intentFromMainActivity2 = intent
 
@@ -51,6 +34,19 @@ class InputActivity : AppCompatActivity() {
             val month = intentFromMainActivity2.getIntExtra("MONTH", -1)
             val day = intentFromMainActivity2.getIntExtra("DAY", -1)
             displayPreviousData(year, month, day)
+        }
+
+        btnInput.setOnClickListener {
+            val userAnswer = etInput.text.toString()
+
+            // 사용자가 입력한 데이터를 DB에 추가 또는 수정
+            dbManager.addData(userAnswer)
+
+            // 데이터 추가 후 EditText 비움
+            etInput.text.clear()
+
+            // InputActivity 종료하여 결과를 돌려줌
+            finish()
         }
     }
 
