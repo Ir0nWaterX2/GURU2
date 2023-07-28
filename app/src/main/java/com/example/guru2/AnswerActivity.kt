@@ -2,31 +2,25 @@ package com.example.guru2
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.ImageButton
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.collections.ArrayList
 
 
-class AnswerActivity : AppCompatActivity(), YearPickerDialog.OnYearSelectedListener {
-    private lateinit var btnDatePicker: Button
-
-
-    lateinit var btnBack : ImageButton
+class AnswerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_answer)
 
         var btnBack: ImageButton = findViewById(R.id.btnBack)
-        btnDatePicker = findViewById(R.id.btnDatePicker)
         val rvAnswer = findViewById<RecyclerView>(R.id.rvAnswer)
         val tvQuestion = findViewById<TextView>(R.id.tvQuestion)
-        btnBack = findViewById<ImageButton>(R.id.btnBack)
-
-
 
         // 뒤로가기 버튼
         btnBack.setOnClickListener {
@@ -35,10 +29,54 @@ class AnswerActivity : AppCompatActivity(), YearPickerDialog.OnYearSelectedListe
             finish()
         }
 
-        // 연도 선택 버튼
+        val btnDatePicker = findViewById<Button>(R.id.btnDatePicker)
+        val builder = AlertDialog.Builder(this)
+        val currentYear = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR)
+        var selectedYear = currentYear // 팝업에 띄울 초깃값은 현재 연도로
+
+        // 연도 선택 버튼 클릭시
         btnDatePicker.setOnClickListener {
-            val yearPickerDialog = YearPickerDialog()
-            yearPickerDialog.show(supportFragmentManager, "yearPicker")
+            // 연도 선택하는 팝업의 레이아웃을 View 객체로 가져오기
+            val inflater = LayoutInflater.from(this)
+            val popupView = inflater.inflate(R.layout.dialog_datepicker, null)
+            builder.setCustomTitle(popupView)
+
+            // View 객체에서 NumberPicker를 찾아서 선택할 수 있는 연도의 최소/최댓값 설정
+            val YearPicker = popupView.findViewById<NumberPicker>(R.id.YearPicker)
+            YearPicker.minValue = 1950
+            YearPicker.maxValue = currentYear
+
+            // 선택 범위가 돌지 않도록 설정
+            YearPicker.wrapSelectorWheel = false
+
+            // 이전에 선택했던 연도가 선택된 채 뜨도록 설정
+            YearPicker.value = selectedYear
+
+            val btnSelect = popupView.findViewById<Button>(R.id.btnSelect)
+            val btnCancle = popupView.findViewById<Button>(R.id.btnCancle)
+
+            // 팝업창 생성
+            val alertDialog = builder.create()
+
+            // 확인 버튼 클릭시
+            btnSelect.setOnClickListener {
+
+                // 선택한 연도 값을 가져와서 selectedYear에 저장
+                selectedYear = YearPicker.value
+                // btnDatePicker의 텍스트를 선택한 연도 값으로 설정
+                btnDatePicker.text = selectedYear.toString()
+
+                alertDialog.dismiss() // 팝업 닫기
+            }
+
+            // 취소 버튼 클릭시
+            btnCancle.setOnClickListener {
+                // 취소 버튼 클릭 시 동작할 내용?.. 뭐가있지..
+
+                alertDialog.dismiss() // 팝업 닫기
+            }
+
+            alertDialog.show() // 팝업창 보이기
         }
 
         //각 날짜에 해당하는 질문(총31개)가 들어있는 배열
@@ -88,16 +126,10 @@ class AnswerActivity : AppCompatActivity(), YearPickerDialog.OnYearSelectedListe
             itemList.add(A_item("$n 월"))
         }
 
-
         val AnswerAdapter = AnswerAdapter(itemList)
         AnswerAdapter.notifyDataSetChanged()
 
         rvAnswer.adapter = AnswerAdapter
         rvAnswer.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
-
-    override fun onYearSelected(year: Int) {
-        btnDatePicker.text = year.toString() // btnDatePicker 버튼의 텍스트 변경
-    }
-
 }
