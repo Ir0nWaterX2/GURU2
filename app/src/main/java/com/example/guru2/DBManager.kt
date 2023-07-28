@@ -71,6 +71,7 @@ class DBManager(
         val currentMonth = getCurrentMonth()
         val currentDay = getCurrentDay()
 
+
         if (isTableExist(currentYear)) {
             val isDataExist = isDataExist(currentYear, currentMonth, currentDay)
             if (isDataExist) {
@@ -82,6 +83,7 @@ class DBManager(
             createYearlyTable(currentYear)
             insertData(currentYear, currentMonth, currentDay, answer)
         }
+
     }
 
     // 기존 데이터를 수정하는 함수
@@ -113,4 +115,6 @@ class DBManager(
         db.close()
         return data
     }
+
+
 }
