@@ -1,18 +1,26 @@
 package com.example.guru2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class AnswerActivity : AppCompatActivity() {
+
+    lateinit var btnBack : ImageButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_answer)
 
         val rvAnswer = findViewById<RecyclerView>(R.id.rvAnswer)
         val tvQuestion = findViewById<TextView>(R.id.tvQuestion)
+        btnBack = findViewById<ImageButton>(R.id.btnBack)
+
+
 
         //각 날짜에 해당하는 질문(총31개)가 들어있는 배열
         val arrQuestion = arrayOf(
@@ -50,7 +58,7 @@ class AnswerActivity : AppCompatActivity() {
         )
         //몇번째 질문(몇 일)인지에 대한 값 받기
         val day = intent.getIntExtra("day",0)
-        tvQuestion.text = arrQuestion[day]
+        tvQuestion.text = "-${day+1}일의 질문- \n"+arrQuestion[day]
 
 
         //출력될 아이템(월을 저장할 배열)
@@ -60,6 +68,14 @@ class AnswerActivity : AppCompatActivity() {
         for(n in 1..12){
             itemList.add(A_item("$n 월"))
         }
+
+
+        //MainActivity2에서 ListActivity로 이동
+        btnBack.setOnClickListener {
+            var intentM = Intent(this,ListActivity ::class.java)
+            startActivity(intentM)
+        }
+
 
         val AnswerAdapter = AnswerAdapter(itemList)
         AnswerAdapter.notifyDataSetChanged()

@@ -5,13 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 
 class InputActivity : AppCompatActivity() {
 
     lateinit var dbManager : DBManager
-
     lateinit var etInput : EditText
     lateinit var btnInput : Button
+    lateinit var btnBack : ImageButton
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +21,8 @@ class InputActivity : AppCompatActivity() {
 
         etInput = findViewById(R.id.etInput)
         btnInput = findViewById(R.id.btnInput)
+        val btnBack = findViewById<ImageButton>(R.id.btnBack)
+
 
         dbManager = DBManager(this, "DB", null, 1)
 
@@ -36,6 +40,13 @@ class InputActivity : AppCompatActivity() {
             displayPreviousData(year, month, day)
         }
 
+        //이전 버튼 클릭 시 MainActivity 로 이동
+        btnBack.setOnClickListener {
+            val intentM = Intent(this, MainActivity::class.java)
+            startActivityForResult(intentM, 1)
+        }
+
+        //
         btnInput.setOnClickListener {
             val userAnswer = etInput.text.toString()
 
@@ -63,6 +74,10 @@ class InputActivity : AppCompatActivity() {
             etInput.text.clear()
         }
     }
+
+
+
+
 }
 
 

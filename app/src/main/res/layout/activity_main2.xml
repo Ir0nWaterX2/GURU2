@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="모든 달, 모든 순간"
-            android:textColor="@color/text"
+            android:textColor="#3F3F48"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,10 +55,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="300dp"
-            android:text="오늘의 질문에 이미 답했습니다."
             android:gravity="center"
+            android:text="오늘의 질문에 이미 답했습니다."
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/text"
+            android:textColor="#3F3F48"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
