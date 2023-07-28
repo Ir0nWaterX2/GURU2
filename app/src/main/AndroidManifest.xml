@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GURU2">
         <activity android:name=".AnswerActivity" />
-        <activity android:name=".TestActivity" />
         <activity android:name=".InputActivity" />
         <activity android:name=".MainActivity2" />
         <activity android:name=".ListActivity" />
