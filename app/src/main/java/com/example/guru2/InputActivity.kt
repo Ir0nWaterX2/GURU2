@@ -23,6 +23,13 @@ class InputActivity : AppCompatActivity() {
         btnInput = findViewById(R.id.btnInput)
         btnBack = findViewById(R.id.btnBack)
 
+        // 뒤로가기 버튼
+        btnBack.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         dbManager = DBManager(this, "DB", null, 1)
 
         // '입력'버튼
@@ -42,14 +49,7 @@ class InputActivity : AppCompatActivity() {
 
             finish()
         }
-/*
-        // 뒤로가기 버튼
-        btnBack.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-*/
+
         // MainActivity2로부터 전달받은 Intent 가져오기
         val intentFromMainActivity2 = intent
 
@@ -62,12 +62,6 @@ class InputActivity : AppCompatActivity() {
             val month = intentFromMainActivity2.getIntExtra("MONTH", -1)
             val day = intentFromMainActivity2.getIntExtra("DAY", -1)
             displayPreviousData(year, month, day)
-        }
-
-        //이전 버튼 클릭 시 MainActivity 로 이동
-        btnBack.setOnClickListener {
-            val intentM = Intent(this, MainActivity::class.java)
-            startActivityForResult(intentM, 1)
         }
 
         //
