@@ -21,11 +21,35 @@ class InputActivity : AppCompatActivity() {
 
         etInput = findViewById(R.id.etInput)
         btnInput = findViewById(R.id.btnInput)
-        val btnBack = findViewById<ImageButton>(R.id.btnBack)
-
+        btnBack = findViewById(R.id.btnBack)
 
         dbManager = DBManager(this, "DB", null, 1)
 
+        // '입력'버튼
+        btnInput.setOnClickListener{
+            val userAnswer = etInput.text.toString()
+
+            // 사용자가 입력한 데이터를 DB에 추가 또는 수정
+            dbManager.addData(userAnswer)
+
+            // 데이터 추가 후 EditText 비움
+            etInput.text.clear()
+
+            // 무조건 Flag를 MainActivity2로 전달
+            val intent = Intent()
+            intent.putExtra("FROM_MAIN_ACTIVITY_2", true)
+            setResult(RESULT_OK, intent)
+
+            finish()
+        }
+/*
+        // 뒤로가기 버튼
+        btnBack.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+*/
         // MainActivity2로부터 전달받은 Intent 가져오기
         val intentFromMainActivity2 = intent
 
@@ -74,11 +98,8 @@ class InputActivity : AppCompatActivity() {
             etInput.text.clear()
         }
     }
-
-
-
-
 }
+
 
 
 
