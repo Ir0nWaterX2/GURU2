@@ -89,11 +89,8 @@ class InputActivity : AppCompatActivity() {
             // 데이터 추가 후 EditText 비움
             etInput.text.clear()
 
-            // 무조건 Flag를 MainActivity2로 전달
-            val intent = Intent()
-            intent.putExtra("FROM_MAIN_ACTIVITY_2", true)
-            setResult(RESULT_OK, intent)
-
+            val intent = Intent(this, MainActivity2::class.java)
+            startActivity(intent)
             finish()
         }
 
@@ -111,19 +108,6 @@ class InputActivity : AppCompatActivity() {
             displayPreviousData(year, month, day)
         }
 
-        //
-        btnInput.setOnClickListener {
-            val userAnswer = etInput.text.toString()
-
-            // 사용자가 입력한 데이터를 DB에 추가 또는 수정
-            dbManager.addData(userAnswer)
-
-            // 데이터 추가 후 EditText 비움
-            etInput.text.clear()
-
-            // InputActivity 종료하여 결과를 돌려줌
-            finish()
-        }
     }
 
     private fun displayPreviousData(year: Int, month: Int, day: Int) {
