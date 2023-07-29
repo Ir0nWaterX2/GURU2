@@ -67,7 +67,7 @@ class InputActivity : AppCompatActivity() {
 
         // 현재 날짜에서 '일' 정보 가져오기
         val today: Int = calendar.get(Calendar.DAY_OF_MONTH)
-        tvTodayQuestion.text = arrQuestion[today]
+        tvTodayQuestion.text = arrQuestion[today-1]
 
 
         // 뒤로가기 버튼
