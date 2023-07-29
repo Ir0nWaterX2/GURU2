@@ -14,6 +14,9 @@ import kotlin.collections.ArrayList
 
 class AnswerActivity : AppCompatActivity() {
 
+    // Declare AnswerAdapter as a property of the activity
+    private lateinit var answerAdapter: AnswerAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_answer)
@@ -65,6 +68,9 @@ class AnswerActivity : AppCompatActivity() {
                 selectedYear = YearPicker.value
                 // btnDatePicker의 텍스트를 선택한 연도 값으로 설정
                 btnDatePicker.text = selectedYear.toString()
+
+                // 선택한 연도 값을 AnswerAdapter에 전달하여 업데이트
+                answerAdapter.setSelectedYear(selectedYear)
 
                 alertDialog.dismiss() // 팝업 닫기
             }
@@ -126,10 +132,11 @@ class AnswerActivity : AppCompatActivity() {
             itemList.add(A_item("$n 월"))
         }
 
-        val AnswerAdapter = AnswerAdapter(itemList)
-        AnswerAdapter.notifyDataSetChanged()
+        // day 값을 받아온 뒤 AnswerAdapter 생성자에 전달
+        val dayValue = intent.getIntExtra("day", 0)
+        answerAdapter = AnswerAdapter(itemList, dayValue)
 
-        rvAnswer.adapter = AnswerAdapter
+        rvAnswer.adapter = answerAdapter
         rvAnswer.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 }
