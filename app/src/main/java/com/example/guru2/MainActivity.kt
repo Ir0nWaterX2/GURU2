@@ -7,6 +7,7 @@ import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
 
+    //데이터베이스매니저 생성
     lateinit var dbManager : DBManager
 
     //InputActivity 이동 버튼

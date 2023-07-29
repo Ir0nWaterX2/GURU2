@@ -12,10 +12,11 @@ import java.util.*
 class InputActivity : AppCompatActivity() {
 
     lateinit var dbManager : DBManager
-    lateinit var etInput : EditText
-    lateinit var btnInput : Button
-    lateinit var btnBack : ImageButton
-    lateinit var tvTodayQuestion : TextView
+
+    lateinit var etInput : EditText //답변 내용 출력
+    lateinit var btnInput : Button //입력 버튼
+    lateinit var btnBack : ImageButton //이전 버튼
+    lateinit var tvTodayQuestion : TextView //상단 질문 출력
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

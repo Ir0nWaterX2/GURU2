@@ -29,7 +29,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- 뒤로가기 버튼 -->
+        <!-- 이전 버튼 -->
         <ImageButton
             android:id="@+id/btnBack"
             android:layout_width="20dp"
