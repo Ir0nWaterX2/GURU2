@@ -14,7 +14,6 @@ import kotlin.collections.ArrayList
 
 class AnswerActivity : AppCompatActivity() {
 
-    // Declare AnswerAdapter as a property of the activity
     private lateinit var answerAdapter: AnswerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -136,7 +135,8 @@ class AnswerActivity : AppCompatActivity() {
         val dayValue = intent.getIntExtra("day", 0)
         answerAdapter = AnswerAdapter(itemList, dayValue)
 
-        rvAnswer.adapter = answerAdapter
+        // 어댑터 및 레이아웃 매니저 설정정
+       rvAnswer.adapter = answerAdapter
         rvAnswer.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 }
