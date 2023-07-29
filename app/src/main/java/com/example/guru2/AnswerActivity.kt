@@ -14,7 +14,6 @@ import kotlin.collections.ArrayList
 
 class AnswerActivity : AppCompatActivity() {
 
-    // Declare AnswerAdapter as a property of the activity
     private lateinit var answerAdapter: AnswerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
