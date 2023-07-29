@@ -79,9 +79,6 @@ class DBManager(
             } else {
                 insertData(currentYear, currentMonth, currentDay, answer)
             }
-        } else {
-            createYearlyTable(currentYear)
-            insertData(currentYear, currentMonth, currentDay, answer)
         }
 
     }
@@ -115,6 +112,5 @@ class DBManager(
         db.close()
         return data
     }
-
 
 }

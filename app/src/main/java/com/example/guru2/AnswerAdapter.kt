@@ -7,8 +7,20 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 
-class AnswerAdapter(private val itemList: ArrayList<A_item>) :
-    RecyclerView.Adapter<AnswerAdapter.AnswerViewHolder>() {
+class AnswerAdapter(private val itemList: ArrayList<A_item>, private val day: Int) :
+        RecyclerView.Adapter<AnswerAdapter.AnswerViewHolder>() {
+
+    lateinit var dbManager : DBManager
+    private var selectedYear: Int = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR)
+
+    fun setSelectedYear(year: Int) {
+        selectedYear = year
+        notifyDataSetChanged()
+    }
+
+    init {
+
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnswerViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.rv_answer_item, parent, false)
@@ -46,7 +58,16 @@ class AnswerAdapter(private val itemList: ArrayList<A_item>) :
 
             if (item.isExpanded) {
                 expandLayout.visibility = View.VISIBLE
-                tvAnswer.text = "${item.month}의 답변 내용"
+
+                // 해당 월과 날짜에 대한 데이터 가져오기
+                dbManager = DBManager(itemView.context, "DB", null, 1)
+                val currentYear = selectedYear
+                val month = item.month.substringBefore(" 월").toInt()
+                val day = day + 1 // 전달받은 day 값을 사용
+
+                val data = dbManager.getData(currentYear, month, day)
+
+                tvAnswer.text = data
             } else {
                 expandLayout.visibility = View.GONE
             }
