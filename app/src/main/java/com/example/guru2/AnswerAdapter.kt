@@ -11,15 +11,13 @@ class AnswerAdapter(private val itemList: ArrayList<A_item>, private val day: In
         RecyclerView.Adapter<AnswerAdapter.AnswerViewHolder>() {
 
     lateinit var dbManager : DBManager
+    // 기본적으로 현재 시스템의 연도 저장
     private var selectedYear: Int = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR)
 
+    // 사용자가 연도 선택 시 selectedYear 업데이트
     fun setSelectedYear(year: Int) {
         selectedYear = year
         notifyDataSetChanged()
-    }
-
-    init {
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnswerViewHolder {

@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
             dbManager.createYearlyTable(currentYear)
         }
 
+        // 해당 날짜의 데이터가 존재하는지 확인
         val isDataExist = dbManager.isDataExist(currentYear, currentMonth, currentDay)
 
         if (isDataExist) {
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity2::class.java)
             startActivity(intent)
             finish()
-        } else{
+        } else{ // 없는 경우 MainActivity 표시
             setContentView(R.layout.activity_main)
 
             btnToInputActivity = findViewById<Button>(R.id.btnToInputActivity)
