@@ -121,7 +121,7 @@ class AnswerActivity : AppCompatActivity() {
 
         //몇번째 질문(몇 일)인지에 대한 값 받기
         val day = intent.getIntExtra("day",0)
-        tvQuestion.text = "-${day+1}일의 질문- \n"+arrQuestion[day]
+        tvQuestion.text = "Day ${day+1} \n"+arrQuestion[day]
 
         //출력될 아이템(월을 저장할 배열)
         val itemList = ArrayList<A_item>()
@@ -133,7 +133,7 @@ class AnswerActivity : AppCompatActivity() {
 
         // day 값을 받아온 뒤 AnswerAdapter 생성자에 전달
         val dayValue = intent.getIntExtra("day", 0)
-        answerAdapter = AnswerAdapter(itemList, dayValue)
+        answerAdapter = AnswerAdapter(itemList, dayValue-1)
 
         // 어댑터 및 레이아웃 매니저 설정정
        rvAnswer.adapter = answerAdapter
