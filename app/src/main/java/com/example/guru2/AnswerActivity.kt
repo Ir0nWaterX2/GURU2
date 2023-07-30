@@ -133,7 +133,7 @@ class AnswerActivity : AppCompatActivity() {
 
         // day 값을 받아온 뒤 AnswerAdapter 생성자에 전달
         val dayValue = intent.getIntExtra("day", 0)
-        answerAdapter = AnswerAdapter(itemList, dayValue-1)
+        answerAdapter = AnswerAdapter(itemList, dayValue)
 
         // 어댑터 및 레이아웃 매니저 설정정
        rvAnswer.adapter = answerAdapter
