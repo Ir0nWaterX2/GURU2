@@ -14,22 +14,7 @@
         app:layout_constraintBottom_toTopOf="@+id/page"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <!-- 앱 제목 -->
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="모든 달, 모든 순간"
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <!-- 구분선 -->
     <View
@@ -120,16 +105,15 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginBottom="38dp"
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            android:layout_marginTop="39dp"
+            android:layout_marginBottom="26dp"
             app:layout_constraintBottom_toTopOf="@+id/tvMainReport"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo_pic" />
+            app:srcCompat="@drawable/logo_pic__" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
