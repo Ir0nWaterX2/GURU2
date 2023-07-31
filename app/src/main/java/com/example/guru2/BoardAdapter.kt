@@ -19,6 +19,7 @@ class BoardAdapter(val itemList: ArrayList<Q_item>) :
         return BoardViewHolder(view)
     }
 
+    //홀더에 값 전달
     override fun onBindViewHolder(holder: BoardViewHolder, position: Int) {
 
         //리사이클러뷰 하나의 아이템 당 출력될 내용
@@ -26,14 +27,18 @@ class BoardAdapter(val itemList: ArrayList<Q_item>) :
         holder.tvQuestion.text = itemList[position].question
     }
 
+
+    // 아이템 리스트 개수를 가져오는 함수
     override fun getItemCount(): Int {
         return itemList.count()
     }
 
-
+    //뷰홀더 클래스
     inner class BoardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        // 질문에 해당하는 날짜를 출력하는 TextView 위젯
         val tvDay = itemView.findViewById<TextView>(R.id.tvDay)
+        // 질문 내용을 출력하는 TextView 위젯
         val tvQuestion = itemView.findViewById<TextView>(R.id.tvQuestion)
 
         init{

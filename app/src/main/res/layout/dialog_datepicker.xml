@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,19 +25,22 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="85dp"
         android:layout_marginEnd="30dp"
+        android:layout_marginBottom="78dp"
         android:text="년의 기록"
-        android:textSize="25dp"
         android:textColor="@color/text"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/YearPicker"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:orientation="horizontal">
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/btnCancle"
@@ -43,10 +48,10 @@
             android:layout_height="match_parent"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="2dp"
-            android:text="취소"
+            android:layout_weight="1"
             android:backgroundTint="@color/button"
-            android:textColor="@color/text"
-            android:layout_weight="1"/>
+            android:text="취소"
+            android:textColor="@color/text" />
 
         <Button
             android:id="@+id/btnSelect"
@@ -54,10 +59,10 @@
             android:layout_height="match_parent"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="5dp"
-            android:text="확인"
+            android:layout_weight="1"
             android:backgroundTint="@color/button"
-            android:textColor="@color/text"
-            android:layout_weight="1"/>
+            android:text="확인"
+            android:textColor="@color/text" />
 
     </LinearLayout>
 

@@ -11,23 +11,10 @@
         android:id="@+id/Top"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        app:layout_constraintBottom_toTopOf="@+id/page"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <!-- 앱 제목 -->
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="모든 달, 모든 순간"
-            android:textColor="@color/text"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <!-- 구분선 -->
     <View
@@ -47,18 +34,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <TextView
             android:id="@+id/tvMainReport"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="300dp"
-            android:text="오늘의 질문이 도착했습니다."
+            android:layout_marginBottom="20dp"
             android:gravity="center"
+            android:text="오늘의 질문이 도착했습니다."
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/text"
+            app:layout_constraintBottom_toTopOf="@+id/btnToInputActivity"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,14 +62,16 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="100dp"
-            android:layout_marginEnd="100dp"
             android:layout_marginTop="20dp"
-            android:text="지금 답 하러 가기"
+            android:layout_marginEnd="100dp"
+            android:layout_marginBottom="157dp"
             android:backgroundTint="@color/button"
+            android:text="지금 답 하러 가기"
             android:textColor="@color/text"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/line2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvMainReport"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvMainReport" />
 
         <!-- 구분선 -->
         <View
@@ -86,9 +82,10 @@
             android:layout_marginEnd="60dp"
             android:layout_marginBottom="100dp"
             android:background="@color/line"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnToInputActivity" />
 
 
         <!-- 지금까지 답변한 질문 리스트로 이동 -->
@@ -98,13 +95,26 @@
             android:layout_height="50dp"
             android:layout_marginStart="100dp"
             android:layout_marginEnd="100dp"
-            android:text="질문 리스트 보기"
             android:backgroundTint="@color/button"
+            android:text="질문 리스트 보기"
             android:textColor="@color/text"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/line2"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line2" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="25dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvMainReport"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo_pic__" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
