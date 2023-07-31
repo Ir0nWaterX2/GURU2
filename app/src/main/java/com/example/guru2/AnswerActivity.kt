@@ -33,6 +33,9 @@ class AnswerActivity : AppCompatActivity() {
 
         val btnDatePicker = findViewById<Button>(R.id.btnDatePicker)
         val builder = AlertDialog.Builder(this)
+        val dbManager = DBManager(this, "DB", null, 1)
+
+        val minYear = dbManager.getMinYear() // 데이터가 존재하는 최소 연도를 가져와서 저장
         val currentYear = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR)
         var selectedYear = currentYear // 팝업에 띄울 초깃값은 현재 연도로
 
@@ -45,7 +48,7 @@ class AnswerActivity : AppCompatActivity() {
 
             // View 객체에서 NumberPicker를 찾아서 선택할 수 있는 연도의 최소/최댓값 설정
             val YearPicker = popupView.findViewById<NumberPicker>(R.id.YearPicker)
-            YearPicker.minValue = 1950
+            YearPicker.minValue = minYear
             YearPicker.maxValue = currentYear
 
             // 선택 범위가 돌지 않도록 설정
@@ -65,13 +68,20 @@ class AnswerActivity : AppCompatActivity() {
 
                 // 선택한 연도 값을 가져와서 selectedYear에 저장
                 selectedYear = YearPicker.value
-                // btnDatePicker의 텍스트를 선택한 연도 값으로 설정
-                btnDatePicker.text = selectedYear.toString()
 
-                // 선택한 연도 값을 AnswerAdapter에 전달하여 업데이트
-                answerAdapter.setSelectedYear(selectedYear)
+                if (!dbManager.isTableExist(selectedYear)) {
+                    // 데이터가 존재하지 않는 연도인 경우 Toast 메시지 출력
+                    Toast.makeText(this, "선택한 연도에는 데이터가 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                } else {
+                    // btnDatePicker의 텍스트를 선택한 연도 값으로 설정
+                    btnDatePicker.text = selectedYear.toString()
 
-                alertDialog.dismiss() // 팝업 닫기
+                    // 선택한 연도 값을 AnswerAdapter에 전달하여 업데이트
+                    answerAdapter.setSelectedYear(selectedYear)
+
+                    alertDialog.dismiss() // 팝업 닫기
+                }
             }
 
             // 취소 버튼 클릭시
@@ -135,8 +145,8 @@ class AnswerActivity : AppCompatActivity() {
         val dayValue = intent.getIntExtra("day", 0)
         answerAdapter = AnswerAdapter(itemList, dayValue)
 
-        // 어댑터 및 레이아웃 매니저 설정정
-       rvAnswer.adapter = answerAdapter
+        // 어댑터 및 레이아웃 매니저 설정
+        rvAnswer.adapter = answerAdapter
         rvAnswer.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 }
