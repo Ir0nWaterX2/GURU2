@@ -23,6 +23,7 @@
             android:id="@+id/tvTodayQuestion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="Today Question"
             android:textColor="@color/text"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -35,12 +36,10 @@
             android:id="@+id/btnBack"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="87dp"
+            android:layout_marginStart="30dp"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tvTodayQuestion"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/icon_back" />
@@ -69,13 +68,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <!-- 내용 입력창 -->
-
-        <!-- 구분선 -->
         <EditText
             android:id="@+id/etInput"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="100dp"
             android:background="@color/white"
@@ -87,9 +85,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- 구분선 -->
         <View
             android:id="@+id/line2"
             android:layout_width="match_parent"
