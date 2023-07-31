@@ -1,9 +1,15 @@
 package com.example.guru2
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
+import androidx.annotation.RequiresApi
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,12 +25,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         // DB에 오늘 입력한 데이터가 있는지 확인
         dbManager = DBManager(this, "DB", null, 1)
         val currentYear = dbManager.getCurrentYear()
         val currentMonth = dbManager.getCurrentMonth()
         val currentDay = dbManager.getCurrentDay()
-
         // 해당 연도의 테이블이 있는지 확인
         if (!dbManager.isTableExist(currentYear)) {
             dbManager.createYearlyTable(currentYear)
@@ -43,6 +49,7 @@ class MainActivity : AppCompatActivity() {
 
             btnToInputActivity = findViewById<Button>(R.id.btnToInputActivity)
             btnToListActivity = findViewById<Button>(R.id.btnToListActivity)
+
 
             //MainActivity에서 InputActivity로 이동( 새로 입력)
             btnToInputActivity.setOnClickListener {
