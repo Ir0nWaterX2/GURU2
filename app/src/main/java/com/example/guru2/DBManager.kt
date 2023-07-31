@@ -113,4 +113,30 @@ class DBManager(
         return data
     }
 
+    // 데이터가 존재하는 최소 연도를 가져오는 함수
+    fun getMinYear(): Int {
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'userDB_%'", null)
+        var minYear = Int.MAX_VALUE
+
+        if (cursor.moveToFirst()) {
+            do {
+                val tableName = cursor.getString(0)
+                val year = tableName.substringAfter("userDB_").toIntOrNull()
+                if (year != null && year < minYear) {
+                    minYear = year
+                }
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return if (minYear == Int.MAX_VALUE) {
+            // 테이블이 하나도 없는 경우, 선택 가능한 최소 범위를 2000년도로 설정
+            2000
+        } else {
+            minYear
+        }
+    }
+
 }
