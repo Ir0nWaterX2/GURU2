@@ -13,15 +13,19 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:fontFamily="@font/sea"
         android:gravity="center"
-        android:text="n일" />
+        android:text="n일"
+        android:textColor="@color/text" />
 
     <TextView
         android:id="@+id/tvQuestion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="4"
+        android:fontFamily="@font/sea"
         android:paddingHorizontal="10dp"
-        android:text="질문" />
+        android:text="질문"
+        android:textColor="@color/text" />
 
 </LinearLayout>

@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
+import java.text.SimpleDateFormat
 
 class MainActivity2 : AppCompatActivity() {
 
@@ -13,6 +15,7 @@ class MainActivity2 : AppCompatActivity() {
     lateinit var btnToInputActivity : Button
     //ListActivity 이동 버튼
     lateinit var btnToListActivity : Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
