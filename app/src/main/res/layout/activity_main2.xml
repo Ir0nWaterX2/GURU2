@@ -106,6 +106,7 @@
             android:layout_width="230dp"
             android:layout_height="230dp"
             android:layout_marginTop="39dp"
+            android:layout_marginEnd="6dp"
             android:layout_marginBottom="26dp"
             app:layout_constraintBottom_toTopOf="@+id/tvMainReport"
             app:layout_constraintEnd_toEndOf="parent"

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ListActivity : AppCompatActivity() {
 
+    //상단 이전 버튼
     lateinit var btnBack : ImageButton
 
 
@@ -59,7 +60,7 @@ class ListActivity : AppCompatActivity() {
                 "미래에 있는 나에게 하고 싶은 말이 있나요?"
         )
 
-        //31개 질문 출력. 추후 서로 다른 질문 31개로 수정 예정
+        //31개 질문 출력
         for(n in 0..30){
             val arr = arrQuestion[n]
             itemList.add(Q_item(1+n,"$arr"))
@@ -72,7 +73,7 @@ class ListActivity : AppCompatActivity() {
             startActivityForResult(intentM, 1)
         }
 
-
+        //어댑터 생성
         val boardAdapter = BoardAdapter(itemList)
         boardAdapter.notifyDataSetChanged()
 
